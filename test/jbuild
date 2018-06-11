@@ -8,5 +8,5 @@
   (deps   (opasswd_test.exe))
   (action (progn
     (run ${<})
-    (bash "sudo ./opasswd_test.exe"))
+    (bash "./opasswd_test.exe"))
    )))

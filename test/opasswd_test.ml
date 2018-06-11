@@ -90,8 +90,8 @@ let test_gc () =
       result;
     end
   in
-  let first = mkshadow 10000 in
-  let second = mkshadow 10000 in
+  let first = mkshadow 100_000 in
+  let second = mkshadow 100_000 in
   let first_t = Shadow.Mem.from_mem first in
   let second_t = Shadow.Mem.from_mem second in
   if (first_t = second_t) then
@@ -119,13 +119,7 @@ let test_null_passwd name =
 
 let main =
   test_name := "daemon";
-  test_chspwd !test_name "foobar";
-  test_shadow ();
-  test_passwd ();
-  test_passwd ();
-  test_unshadow ();
-  test_null_passwd !test_name;
-  test_gc ();
+  for _ = 0 to 100_000 do test_gc () done;
   ()
 
 (* Local Variables: *)
